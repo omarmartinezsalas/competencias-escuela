@@ -1,0 +1,59 @@
+.fondo-azul
+{
+	color:#A5A5AF;
+	background-color:#015249;
+}
+.fondo-c
+{
+	
+	background-color:#ffffff;
+
+}
+.redondo
+{
+	border-radius: 50%;
+}
+.encabezado
+{
+	text-align: center;
+	
+	color:#57BC90;
+}
+.letra
+{
+	text-align: center;
+	
+	color:#57BC90;
+	
+	
+}
+body
+{
+	background-color:#d7d7ef ;
+}
+a{
+	
+	color:#57BC90;
+	display: block;
+}
+li{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	display: block;
+	//background-color: yellow;
+	border: 1px none ;
+}
+hr
+{
+	background-color:#57BC90;
+}
+.contenido
+{
+	background-color:#F2F2F2;
+}
+
+.menu
+{
+	//width: 100%;
+
+}

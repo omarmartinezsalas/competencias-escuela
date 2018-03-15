@@ -1,0 +1,48 @@
+body
+{
+	color:#77C9D4;
+	
+	background-color:#000000; 
+	background: url('../resource/imageni/f.jpg') no-repeat center top;
+}
+div
+{
+	width: 400px;
+	margin: 0 auto;
+	background-color:#015249;
+
+	margin-top: 4px;
+	border-radius: 10px;
+	padding-bottom: 5px;
+	height: auto;
+}
+input
+{
+	border-radius: 10px;
+}
+#login
+{
+	width: 300px;
+	margin: 0 auto;
+	background-color:#015249; 
+	margin-top: 10%;
+	border-radius: 10px;
+	padding-bottom: 5px;
+}
+h6
+{
+	color: red;
+	//background-color: red;
+}
+
+button
+{
+	margin-top: 5px;
+}
+
+.error
+{
+	border-color: red;
+	border: 2px;
+	//background-color: red;
+}
