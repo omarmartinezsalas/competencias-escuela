@@ -4,11 +4,16 @@ if(!isset($_SESSION['curso']))
 {
 	//header("location: wellcome.php");exit;
 	echo"<br><center><a href='wellcome.php'><button type='button' class='btn btn-primary'>Selecciona un curso</button></a></center>";exit;
+}else
+{
+	include ("../controller/mostrar_competencias.php");
 }
+
 ?>
 
 	<div class="col-lg-9 col-md-12 col-sm-12 col-xs-12 contenido">
 		<h1>Competencias Genericas</h1>
+		<a href="manual.html#genericas" align="right" target="_blank"><button class="btn btn-warning"><span class="icon-question"></span></button></a>
 		<!--<form id="form-registro" name="competencias" method="POST" action="../controller/controller_generica.php?accion=agregar">
 			<label>Clave</label><br>
 			<input type="text" placeholder="CG1" name="clave" maxlength="5" ></input><br>
@@ -41,7 +46,8 @@ if(!isset($_SESSION['curso']))
 			</ul>
 		</div>-->
 		<?php
-		include ("../controller/controller_generica.php");
+		$muestra=new lista();
+		$muestra->genericas($_SESSION['curso'],$_SESSION['parcial']);
 		?>
 		
 

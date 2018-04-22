@@ -4,10 +4,14 @@ if(!isset($_SESSION['curso']))
 {
 	//header("location: wellcome.php");exit;
 	echo"<br><center><a href='wellcome.php'><button type='button' class='btn btn-primary'>Selecciona un curso</button></a></center>";exit;
+}else
+{
+	include ("../controller/mostrar_competencias.php");
 }
 ?>
 	<div class="col-lg-9 col-md-12 col-sm-12 col-xs-12 contenido">
 		<h1>Competencias disciplinares</h1>
+		<a href="manual.html#disciplinares" align="right" target="_blank"><button class="btn btn-warning"><span class="icon-question"></span></button></a>
 		<!--<form id="form-registro" name="competencias" method="POST" action="../controller/controller_diciplinar.php?accion=agregar">
 			<label>Clave</label>
 			<br><input type="text" placeholder="CG1" name="clave" maxlength="5" class="form-control" required> </input> <br>
@@ -45,9 +49,10 @@ if(!isset($_SESSION['curso']))
 			<?php
 			if(isset($_SESSION['curso']))
 			{
-			echo($_SESSION['curso']);
+			//echo($_SESSION['curso']);
 			}
-			include ("../controller/controller_diciplinar.php");
+			$mostrar=new lista();
+			$mostrar->disciplinares($_SESSION['curso'],$_SESSION['parcial']); 
 			?>
 		</div>
 	</div>

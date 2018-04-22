@@ -38,11 +38,15 @@ class alumno
 	} 
 	public function nueva($a,$b,$c,$d,$e,$f,$g)
 	{
-		require_once '../model/conexion.php';
+		require '../model/conexion.php';
 
-		mysqli_query($conn,"insert into colegio.alumnos (matricula,nombre,a_paterno,a_materno,sexo,fecha_nacimiento,clave_grupo) values ('".$a."','".$b."','".$c."','".$d."','".$e."','".$f."','".$g."');");	
+		$consulta=mysqli_query($conn,"insert into alumnos (matricula,nombre,a_paterno,a_materno,sexo,fecha_nacimiento,clave_grupo) values ('".$a."','".$b."','".$c."','".$d."','".$e."','".$f."','".$g."');");
+
+
+		$r=mysqli_affected_rows($conn);	
 
 		mysqli_close($conn);
+		return $r;
 	} 
 	public function borrar($clave)
 	{
@@ -53,11 +57,13 @@ class alumno
 
 		
 	} 
-	
-	
+	function listar_alumnos($grupo)
+	{
+		require '../model/conexion.php';
+		$consulta=mysqli_query($conn,"select * from alumnos where clave_grupo='{$grupo}';");	
 
-
-
-
+		mysqli_close($conn);
+		return $consulta;
+	}
 }
 ?>

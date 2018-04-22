@@ -22,7 +22,10 @@ switch($accion)
 
 	$clase_pro=new competencia_profesional();
 	$clase_pro->nueva($clave,$descripcion,$categoria,$nivel);
-	header ("Location: ../vista/competencias_profesionales.php");
+	//header ("Location: ../vista/competencias_profesionales.php");
+	echo '<script type="text/javascript">';
+	echo 'window.location.href="../vista/competencias_profesionales.php";';
+	echo '</script>';
 	break;
 
 
@@ -33,10 +36,13 @@ switch($accion)
 	$clave=$_GET['clave'];
 	$clase_pro=new competencia_profesional();
 	$clase_pro->borrar($clave);
-	header ("Location: ../vista/competencias_profesionales.php");
+	//header ("Location: ../vista/competencias_profesionales.php");
+	echo '<script type="text/javascript">';
+	echo 'window.location.href="../vista/competencias_profesionales.php";';
+	echo '</script>';
 	break;
 
-	case 'ver':
+	/*case 'ver'://pasa a controller/mostrar_competencias.php
 	$clase_pro=new competencia_profesional();
 	$consulta=$clase_pro->vertodo();
 
@@ -57,7 +63,7 @@ switch($accion)
             echo"</tbody></table>";
 
 
-	break;
+	break;*/
 	case 'ver_competencia_profesional':
 	$clase_pro=new competencia_profesional();
 	$consulta=$clase_pro->ver_competencias_curso();

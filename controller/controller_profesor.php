@@ -163,6 +163,29 @@ switch($accion)
 	}
 	break;
 
+	case 'cambiapassemail':
+	$nueva=$_POST['nueva'];
+	$clave=$_POST['clave'];
+	//echo "---{$clave}---";
+	$clase_profesor=new profesor();
+	$resultado=$clase_profesor->editar_pass_email($clave,$nueva);
+
+	//$resultado=mysqli_affected_rows($resultado);
+	
+	//echo "--{$resultado}---";
+
+
+	if ($resultado>0) 
+	{
+		echo "<h1>Contraseña se ha cambiado correctamente</h1><br>";
+		echo "<a href='../vista/iniciar_sesion.php'>Continuar aqui</a>";
+	}else
+	{
+		echo "<h1>Error: No has realizado ningun cambio</h1>";
+		echo "<br><a href='../index.php'>Regresar</a>";
+	}
+	break;
+
 
 }
 

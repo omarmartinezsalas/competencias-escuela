@@ -23,7 +23,10 @@ switch($accion)
 
 	$atributo=new atributo();
 	$atributo->nueva($descripcion,$clave);
-	header ("Location: ../vista/registro_atributos.php");
+	//header ("Location: ../vista/registro_atributos.php");
+	echo '<script type="text/javascript">';
+	echo 'window.location.href="../vista/registro_atributos.php";';
+	echo '</script>';
 	break;
 
 
@@ -34,7 +37,10 @@ switch($accion)
 	$clave=$_GET['clave'];
 	$atributo=new atributo();
 	$atributo->borrar($clave);
-	header ("Location: ../vista/registro_atributos.php");
+	//header ("Location: ../vista/registro_atributos.php");
+	echo '<script type="text/javascript">';
+	echo 'window.location.href="../vista/registro_atributos.php";';
+	echo '</script>';
 	break;
 
 	case 'ver':

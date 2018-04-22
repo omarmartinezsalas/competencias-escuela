@@ -21,7 +21,10 @@ switch($accion)
 
 	$clase_diciplinar=new competencia_diciplinar();
 	$clase_diciplinar->nueva($clave,$descripcion,$categoria,$nivel);
-	header ("Location: ../vista/competencias_diciplinares.php");
+	//header ("Location: ../vista/competencias_diciplinares.php");
+	echo '<script type="text/javascript">';
+	echo 'window.location.href="../vista/competencias_diciplinares.php";';
+	echo '</script>';
 	break;
 
 
@@ -32,10 +35,13 @@ switch($accion)
 	$clave=$_GET['clave'];
 	$clase_diciplinar=new competencia_diciplinar();
 	$clase_diciplinar->borrar($clave);
-	header ("Location: ../vista/competencias_diciplinares.php");
+	//header ("Location: ../vista/competencias_diciplinares.php");
+	echo '<script type="text/javascript">';
+	echo 'window.location.href="../vista/competencias_diciplinares.php";';
+	echo '</script>';
 	break;
 
-	case 'ver':
+	/*case 'ver'://pasa a controller/mostrar_competencias.php
 	$clase_diciplinar=new competencia_diciplinar();
 	$consulta=$clase_diciplinar->vertodo();
 
@@ -56,7 +62,7 @@ switch($accion)
             echo"</tbody></table>";
 
 
-	break;
+	break;*/
 	case 'ver_competencia_diciplinar':
 	
 

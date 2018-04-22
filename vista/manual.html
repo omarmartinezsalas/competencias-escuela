@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Manual</title>
+	<link rel="stylesheet" href="../resource/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../resource/css/menu.css">
+	<link rel="stylesheet" href="../resource/icon/style.css">
+
+	<script src="../resource/js/jquery-3.2.1.min.js"></script>
+	<script src="../resource/js/popper.js"></script>
+	<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+	<script src="../resource/js/bootstrap.min.js"></script>
+	<!--contenido-->
+	<style type="text/css">
+		a
+		{
+			color: red;
+		}
+		body{
+			color: blue;
+		}
+		h1{
+			color: brown;
+		}
+		img{
+			border: 5px solid #000; 
+		}
+		.separador
+		{
+			border: 0px solid #fff; 
+		}
+	</style>
+</head>
+<body>
+
+	<div class="container" style="background-color: #ffffff;">
+		<div class="row">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+				<h1>INDICE</h1>
+				<ul>
+					<li><a href="#inicio">Pagina de inicio</a></li>
+					<li><a href="#cursos">Ver cursos</a></li>
+					<li><a href="#actividades">Ver actividades</a></li>
+					<li><a href="#parciales">Evaluacion parcial</a></li>
+					<li><a href="#evaluacion_actividades">Evaluacion de actividades</a></li>
+					<li><a href="#genericas">Competencias genericas</a></li>
+					<li><a href="#disciplinares">Competencias disciplinares</a></li>
+					<li><a href="#profesionales">Competencias profesionales</a></li>
+					<li><a href="#registrar_actividad">Registrar actividad</a></li>
+					<li><a href="#registrar_curso">Registrar curso</a></li>
+
+	<img class="separador" src="../resource/manual/separador1.PNG" class="img-fluid" alt="Responsive image" style="width: 100%;"></img>
+					
+				</ul>
+			</div>
+
+			<!--contenido-->
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+
+				<img src="../resource/manual/firecrome.PNG" class="img-fluid" alt="Responsive image"></img>
+				<h1>Navegadores recomendados</h1>
+				<ul>
+					<li>Google Chrome version de escritorio y version movil</li>
+					<li>Mozilla Firefox version de escritorio y version movil</li>
+
+				</ul>
+				<p>*Preferntemente use Chrome.</p>
+				<p>*En algunos navegadores la aplicacion podria no funcionar correctamente.</p>
+
+
+
+
+	<img class="separador" src="../resource/manual/separador1.PNG" class="img-fluid" alt="Responsive image" style="width: 100%;"></img>
+
+				<h1 id="inicio">Pagina de inicio</h1>
+				<img src="../resource/manual/inicio1.PNG" class="img-fluid" alt="Responsive image"></img>
+				<p><strong>1.- Imagen de perfil: </strong>Puede cambiarse en la pagina de ajustes.</p>
+				<p><strong>2.- Inicio: </strong>Enlace a la pagina de inicio.</p>
+				<p><strong>3.- Menu de competencias: </strong>Son los enlaces para ir a la pagina para ver y seleccionar competencias para un curso (una pagina para cada tipo de competencia, generica, disciplinar y profesional).</p>
+				<p><strong>4.- Registrar actividad: </strong>Enlace a un formulario para registrar una actividad para un curso.</p>
+				<p><strong>5.- Registrar curso: </strong>Enlace a un formlario para registrar un nuevo curso.</p>
+				<p><strong>6.- Clave y nombre del profesor: </strong>Muestra la clave y nombre del profesor que inicio sesion.</p>
+				<p><strong>7.- Ajustes y cerrar sesion: </strong>El boton azul es un enlace a una pagina que le permitira cambiar la imagen de perfil, la contraseña y datos. El boton rojo es para cerrar session.</p>
+				<p id="cursos"><strong>8.- Cursos: </strong>En esta seccion se muestran los cursos que han sido creados, en caso de no haber cursos creados, se mostrara un enlace al formulario para crear uno. En caso de que haya creado un curso anteriormente, se mostraran como en la siguiente imagen.</p>
+	<img  src="../resource/manual/menu_cursos.PNG" class="img-fluid" alt="Responsive image"></img>
+				<p>Cada curso se visualiza en un cuadro que lleva el nombre de la asignatura, el grupo al que se imparte, y cuatro botones.</p>
+				<p><strong>El boton ver actividades</strong> lo redirige a una pagina donde podra visualizar todas las actividades que ha creado para ese curso.</p>
+				<p><strong>Los botones Parcial (1, 2, 3)</strong> lo redirigen a una pagina donde mostraran la lista de alumnos junto con los criterios de evaluacion, las competencias seleccionadas y otras opciones.</p>
+
+				<p>Al hacer clic en cualquiera de los botones anteriores, el curso se considera como seleccionado y en el menu aparecera una opcion que contendra "nombre de la materia/grupo/parcial". es importante tener en cuenta el numero de parcial (1,2 o 3) ya que al elegir sus competencias estas se asignaran al parcial seleccionado.</p>
+				<img src="../resource/manual/opcion.PNG" class="img-fluid" alt="Responsive image"></img>
+
+				<br>
+	<img class="separador" src="../resource/manual/separador1.PNG" class="img-fluid" alt="Responsive image" style="width: 100%;"></img>
+				<h1 id="actividades">Ver actividades</h1>
+				<p>En esta pagina se muestran las actividades de cada parcial que han sido creadas, existe la opcion de borrarla si asi lo requiere, pero no hay forma de recuperarla.</p>
+				<p><strong>Examen, tutoria, orientacion y extra</strong> son criterios de evaluacion predeterminados y no pueden ser borradas.</p>
+				<img src="../resource/manual/ver_actividades.PNG" class="img-fluid" alt="Responsive image"></img>
+				<br>
+				<p>Al final de la pagina hay un boton para borrar el curso, al presionalo eliminara las actividades, calificaciones y competencias que haya creado o seleccionado (no se puede restaurar una vez borrado).</p>
+					<img src="../resource/manual/eliminar_curso.PNG" class="img-fluid" alt="Responsive image"></img>
+	<img class="separador" src="../resource/manual/separador1.PNG" class="img-fluid" alt="Responsive image" style="width: 100%;"></img>
+				<h1 id="parciales">Parciales</h1>
+				<img src="../resource/manual/parcial.PNG" class="img-fluid" alt="Responsive image"></img>
+				<p><strong>1.- Opcion en menu: </strong>Al hacer clic en algun boton de los cursos( ver actividades, parcial 1, parcial 2, parcial 3) aparecera en el menu una nueva opcion que le inndica que ese curso ha sido seleccionado, el numero que esta al final indica el parcial 1, 2, o 3, al dar clic en esta opcion lo redirige a la pagina de evaluacion de parcial. </p>
+
+				<p><strong>2.- Criterios de evaluacion: </strong>Aqui se asigna una calificacion a los criterios de evaluacion los cuales tienen un valor porcentual en la calificacion final. <br>Examen 20% <br>tutoria 10%<br>orientacion 10%<br>extra 10%<br>evaluacion continua 60%</p>
+
+				<p><strong>extra</strong> es un campo opcional y puede ser usado o no.</p>
+
+				<p>Para <strong>modificar la calificacion</strong> haga clic sobre la casilla que contiene la calificacion, escriba el numero o bien ayudese con las flechas que aparecen para subir y bajar  la cantidad y por ultimo mientras el puntero siga en la casilla presione enter para guardar, la pagina recargara y mostrara la nueva calificacion (Solo se guarda una calificacion a la vez).</p>
+					<img src="../resource/manual/cal.PNG" class="img-fluid" alt="Responsive image"></img>
+
+				<p>La escala es de 0 a 10 y el calculo del porcentaje se realizara automaticamente</p>
+				<table border="1">
+					<tr>
+						<td colspan="2">ejemplo de calificaciones en examen</td>
+						
+					</tr>
+					<tr>
+						<td>calificacion</td>
+						<td>puntos en calificacion final</td>
+					</tr>
+					<tr>
+						<td>10</td>
+						<td>2</td>
+					</tr>
+					<tr>
+						<td>9</td>
+						<td>1.8</td>
+					</tr>
+					<tr>
+						<td>8</td>
+						<td>1.6</td>
+					</tr>
+				</table>
+				<br>
+					<table border="1">
+					<tr>
+						<td colspan="2">ejemplo de calificaciones en extra, orientacion y tutoria</td>
+						
+					</tr>
+					<tr>
+						<td>calificacion</td>
+						<td>puntos en calificacion final</td>
+					</tr>
+					<tr>
+						<td>10</td>
+						<td>1</td>
+					</tr>
+					<tr>
+						<td>9</td>
+						<td>0.9</td>
+					</tr>
+					<tr>
+						<td>8</td>
+						<td>0.8</td>
+					</tr>
+				</table>
+		
+				<p><strong>3.- Evaluacion continua</strong> vale  el 60 porciento de la calificacion final y es el promedio de las calificaciones obtenidas de las actividades. Con el boton verde ingresa a la pagina de calificaciones de actividades de cada alumno.<a href="#evaluacion_actividades">ir a evaluacion de actividades</a></p>
+				<p><strong>4.- Calificacion final</strong> Muestra la calificacion final y el dictamen<br>mas de nueve--excelente<br>de 8 a 8.9----muy bien<br>de 7 a 7.9----bien<br>de 6 a 6.9----regular<br>menor de 6----insuficiente</p>
+
+
+
+			
+				<br>	
+
+				<p><strong>Competencias:</strong> abajo de la tabla de evaluacion estan todas las competencias que se han seleccionado previamente para este curso y parcial</p>
+
+				<p><strong>Resumen de evaluacion de competencias:</strong> al final hay tres botones que sirven para mostrar el reporte de evalacion de competencias (un reporte por cada tipo de competencia, genericas, disciplinar, profesional), el cual podra ser impreso o guardado en formato pdf. Para imprimir o guardar haga clic derecho en calquier lugar de la pagina y seleccione la opcion "imprimir...".</p>
+				<img src="../resource/manual/competencias.PNG" class="img-fluid" alt="Responsive image"></img>
+	<img class="separador" src="../resource/manual/separador1.PNG" class="img-fluid" alt="Responsive image" style="width: 100%;"></img>
+				<h1 id="evaluacion_actividades">Evaluacion de actividades</h1>
+				<img src="../resource/manual/actividades.PNG" class="img-fluid" alt="Responsive image"></img>
+				<p><strong>1.- Informacion del alumno:</strong> Se muestran la matricula y nombre del alumno seleccionado.</p>
+				<p><strong>2.- Nombre de la actividad:</strong> Se muestra el nombre de la actividad.</p>
+				<p><strong>3.- Calificacion:</strong> Espacio para asignar la calificacion, esta se asigna de la misma manera que en la ventana de <a href="#parciales">evaluacion de parcial</a>.</p>
+				<p><strong>4.- Competencias:</strong> Son las competencias que se le asignaron a la actividad al momento de crearl, al darle clic se mostrara la descripcion de la competencia.</p>
+				<img src="../resource/manual/descripcion_competencia.PNG" class="img-fluid" alt="Responsive image"></img>
+				<p>En caso de que la actividad no tenga competencias asignadas se vera de la siguiente manera.</p>
+				<img src="../resource/manual/actividades2.PNG" class="img-fluid" alt="Responsive image"></img>
+	<img class="separador" src="../resource/manual/separador1.PNG" class="img-fluid" alt="Responsive image" style="width: 100%;"></img>
+				<h1 id="genericas">Competencias genericas</h1>
+
+				<p>Hay 11 competencias genericas distribuidas en 6 categorias, en esta seccion se muestra una tabla por competencia con el fin de que seleccione los atributos que desse integrar a su curso seleccionado</p>
+				<table border="4">
+				<tr>
+				<td>Competencias</td>
+				<td>Categoria</td>	
+				</tr>
+
+				<tr>
+				<td>1.- Participa con una conciencia cívica y ética en la vida de su comunidad, región, México y el mundo<br>
+					2.- Mantiene una actitud respetuosa hacia la interculturalidad y la diversidad de creencias, valores, ideas y prácticas sociales<br>
+					3.- Contribuye al desarrollo sustentable de manera crítica, con acciones responsables
+
+				</td>
+				<td>participa con responsabilidad en la sociedad</td>	
+				</tr>
+
+				<tr>
+				<td>4.- Participa y colabora de manera efectiva en equipos diversos
+					
+
+				</td>
+				<td>trabaja en forma colaborativa</td>	
+				</tr>
+
+				<tr>
+				<td>5.- Aprende por iniciativa e interés propio a lo largo de la vida
+
+				</td>
+				<td>aprende de forma autonoma</td>	
+				</tr>
+
+				<tr>
+				<td>6.- Sustenta una postura personal sobre temas de interés y relevancia general, considerando otros puntos de vista de manera crítica y reflexiva<br>
+					7.- Desarrolla innovaciones y propone soluciones a problemas a partir de métodos establecidos<br>
+				
+
+				</td>
+				<td>piensa critica y reflexivamente</td>	
+				</tr>
+
+				<tr>
+				<td>8.- Escucha, interpreta y emite mensajes pertinentes en distintos contextos mediante la utilización de medios, códigos y herramientas apropiados
+				
+
+				</td>
+				<td>se expresa y comunica</td>	
+				</tr>
+
+				<tr>
+				<td>9.- Elige y practica estilos de vida saludables<br>
+					10.- Es sensible al arte y participa en la apreciación e interpretación de sus expresiones<br>
+					11.- Se conoce y valora a sí mismo y aborda problemas y retos teniendo en cuenta los objetivos que persigue
+				
+
+				</td>
+				<td>se autodetermina y cuida de si</td>	
+				</tr>
+
+				</table>
+				<img src="../resource/manual/genericas.PNG" class="img-fluid" alt="Responsive image"></img>
+				<p>Para agregar un atributo debe hacer clic sobre el boton verde que esta delante de la descripcion del atributo que desee agregar, entonces aparecera otro boton rojo, que sirve para removerlo del curso, los atributos que tengan los dos botones son los que estan agregados al curso en el parcial que ha seleccionado (el parcial seleccionado lo puede visualizar en la opcion debajo de inicio en el menu).</p>
+
+				<img src="../resource/manual/opcion.PNG" class="img-fluid" alt="Responsive image"></img>
+
+				<p>Las competencias que selecciona son agregados a un solo parcial, el que tiene seleccionado. </p>
+	<img class="separador" src="../resource/manual/separador1.PNG" class="img-fluid" alt="Responsive image" style="width: 100%;"></img>
+				<h1 id="disciplinares">Competencias disciplinares</h1>
+				<p>Las competencias disciplinares se seleccionan de la misma forma que las genericas, dar clic en el boton verde para agregar y en el rojo para quitar.</p>
+
+				<img src="../resource/manual/disciplinares.PNG" class="img-fluid" alt="Responsive image"></img>
+				<p>El recuadro blanco que aparece arriba de la tabla de competencias es un filtro que hace que se muestren las competencias que tengan coincidencias con las palabras o letras que escriba. Por ejemplo: si pone la palabra "construye", la tabla mostrara solo las competencias que contengan la palabra.</p>
+	<img class="separador" src="../resource/manual/separador1.PNG" class="img-fluid" alt="Responsive image" style="width: 100%;"></img>
+
+				<h1 id="profesionales">Competencias profesionales</h1>
+				<img src="../resource/manual/profesionales.PNG" class="img-fluid" alt="Responsive image"></img>
+				<p>Competencias profesionales cuenta con un formulario para registrar nuevas competencias profesionales las cuales apareeran en la tabla que esta debajo <br>La clave solo puede ser de 6 caracteres y la descripcion de 300 caracteres.</p>
+
+				<p>La tabla y el cuadro de busqueda funciona exactamente igual que en la pagina de competencias disciplinares.</p>
+
+	<img class="separador" src="../resource/manual/separador1.PNG" class="img-fluid" alt="Responsive image" style="width: 100%;"></img>
+
+				<h1 id="registrar_actividad">Registrar actividad</h1>
+				<img src="../resource/manual/registroactividad1.PNG" class="img-fluid" alt="Responsive image"></img>
+				<p>En esta pagina encontrará un formulario donde deberá escribir primeramente una descripción o nombre de la actividad de 100 caracteres máximo. Después seleccione la fecha de entrega y marque el numero de parcial donde estará la actividad.</p>
+				<img src="../resource/manual/registroactividad2.PNG" class="img-fluid" alt="Responsive image"></img>
+				<p>Después de lo anterior tiene la opción de vincular la actividad que esta por crear con algunas competencias. Si desea agregar una competencia genérica puede dar clic en cualquiera de los tres primeros botones y saldrá una ventana emergente como la siguiente.</p>
+				<img src="../resource/manual/registroactivida3.PNG" class="img-fluid" alt="Responsive image"></img>
+				<p>Deberá dar un clic en el botón buscar y podrá ver las competencias que están vinculadas al curso.</p>
+				<img src="../resource/manual/registroactividad4.PNG" class="img-fluid" alt="Responsive image"></img>
+				<p>Después de clic en uno de los botones verdes para agregar la competencia. Y será agregada al formulario</p>
+
+				<img src="../resource/manual/registroactividad5.PNG" class="img-fluid" alt="Responsive image"></img>
+				<p>Para cambiar la competencia seleccionada repita la acción, pero seleccionando una competencia diferente. Puede seleccionar tres competencias genéricas, dos disciplinares y dos profesionales. Si desea que no se registre la competencia presione el botón rojo, la casilla se marcara de otro color lo que indica que no se tomara en cuenta.</p>
+				<img src="../resource/manual/registroactividad6.PNG" class="img-fluid" alt="Responsive image"></img>
+				<img src="../resource/manual/registroactividad7.PNG" class="img-fluid" alt="Responsive image"></img>
+				<p>Por último de clic en el botón registrar para guardar la actividad.</p>
+
+
+	<img class="separador" src="../resource/manual/separador1.PNG" class="img-fluid" alt="Responsive image" style="width: 100%;"></img>
+
+				<h1 id="registrar_curso">Registrar curso</h1>
+				<p>En enta pagina tendra un formulario donde tendra una lista de materias y una de grupos</p>
+				<img src="../resource/manual/registracurso1.PNG" class="img-fluid" alt="Responsive image"></img>
+				<p>Seleccione el grupo y materia que impartira y de clic en el boton "Registrar"</p>
+				<img src="../resource/manual/registracurso2.PNG" class="img-fluid" alt="Responsive image"></img>
+				<p>Despues espere un momento, esta accion podria tardar un poco, no cierre la pagina ni la  recarge, la pagina le avisara cuando este completado el registro.</p>
+				<img src="../resource/manual/registrocurso3.PNG" class="img-fluid" alt="Responsive image"></img>
+			
+			</div>	
+	</div><!--row-->
+
+	
+
+
+
+
+	</div><!--contenido-->
+	
+	
+
+
+</body>
+</html>

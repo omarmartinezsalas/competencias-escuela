@@ -9,7 +9,7 @@ class curso
 	{
 		require '../model/conexion.php';
 
-		mysqli_query($conn,"insert into colegio.cursos (clave_materia,clave_grupo,clave_profesor) values ('".$a."','".$b."','".$c."');");	
+		mysqli_query($conn,"insert into cursos (clave_materia,clave_grupo,clave_profesor) values ('".$a."','".$b."','".$c."');");	
 		$curso=mysqli_query($conn,"select max(clave) from cursos;");
 		while($row=mysqli_fetch_row($curso))
 		{
@@ -36,7 +36,7 @@ class curso
 		//$fech="".$fecha." ";
 		$fech=settype($fecha, "string");
 
-		$res=mysqli_query($conn,"insert into colegio.actividades (descripcion,clave_curso,fecha_entrega,parcial,tipo) values ('{$tipo}','{$c}','{$fech}','{$parcial}','{$tipo}');");
+		$res=mysqli_query($conn,"insert into actividades (descripcion,clave_curso,fecha_entrega,parcial,tipo) values ('{$tipo}','{$c}','{$fech}','{$parcial}','{$tipo}');");
 		
 		$id_actividad=mysqli_query($conn,"select max(id) from actividades;");
 		while($row=mysqli_fetch_row($id_actividad))

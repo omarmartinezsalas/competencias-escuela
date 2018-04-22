@@ -2,18 +2,20 @@ $(document).ready(function(){
 
 var com=0;
 var casilla;
+var descripcion;
 	$("#addgenerica").click(function()
 	{
 			$("#generica").attr("disabled", false);
 			$("#generica").attr("style", "border-color:green;");
          casilla=$("#generica");
-			
+			descripcion=$("#descripcion_generica1");
 	});
    $("#addgenerica2").click(function()
    {
          $("#generica2").attr("disabled", false);
          $("#generica2").attr("style", "border-color:green;");
          casilla=$("#generica2");
+         descripcion=$("#descripcion_generica2");
          
    });
    $("#addgenerica3").click(function()
@@ -21,6 +23,7 @@ var casilla;
          $("#generica3").attr("disabled", false);
          $("#generica3").attr("style", "border-color:green;");
          casilla=$("#generica3");
+         descripcion=$("#descripcion_generica3");
          
    });
 	$("#quitgenerica").click(function()
@@ -53,6 +56,7 @@ var casilla;
 			$("#diciplinar").attr("disabled", false);
 			$("#diciplinar").attr("style", "border-color:green;");
 			casilla=$("#diciplinar");
+         descripcion=$("#descripcion_disciplinar1");
 	});
 	$("#quitdiciplinar").click(function()
 		{
@@ -66,6 +70,7 @@ var casilla;
          $("#diciplinar2").attr("disabled", false);
          $("#diciplinar2").attr("style", "border-color:green;");
          casilla=$("#diciplinar2");
+         descripcion=$("#descripcion_disciplinar2");
    });
    $("#quitdiciplinar2").click(function()
       {
@@ -78,8 +83,9 @@ var casilla;
 	$("#addprofesional").click(function()
 	{
 			$("#profesional").attr("disabled", false);
-			$("#prfesional").attr("style", "border-color:green;");
+			$("#profesional").attr("style", "border-color:green;");
 	        casilla=$("#profesional");
+         descripcion=$("#descripcion_profesional1");
    });
 	$("#quitprofesional").click(function()
 		{
@@ -90,8 +96,9 @@ var casilla;
    $("#addprofesional2").click(function()
    {
          $("#profesional2").attr("disabled", false);
-         $("#prfesional2").attr("style", "border-color:green;");
+         $("#profesional2").attr("style", "border-color:green;");
          casilla=$("#profesional2");
+         descripcion=$("#descripcion_profesional2");
    });
    $("#quitprofesional2").click(function()
       {
@@ -120,30 +127,67 @@ var casilla;
 //-------------add casilla------------------------------------------------------
 	$('#exampleModalLong').on('click', 'button', function(){
     com=$(this).attr('id');
+
    
+     //------------
+    $(this).attr('class','btn btn-danger');
+
+    $("#exampleModalLong").modal('hide');
+   //----------------
+
    casilla.attr("value", com);
-    
+    descripcion.attr("value",$(this).attr('value'));
 
   	});
 //-----------------add casilla diciplinar--------------------------
       $('#modaldiciplinar').on('click', 'button', function(){
     dic=$(this).attr('id');
-    
+   des=$(this).attr('value');
+     //------------
+    $(this).attr('class','btn btn-danger');
+
+    $("#modaldiciplinar").modal('hide');
+   //----------------
+
    casilla.attr("value", dic);
+   descripcion.attr("value",$(this).attr('value'));
 
    });
 //agrega clave a profesional
       $('#modalprofesional').on('click', 'button', function(){
     dic=$(this).attr('id');
     
-   
+    //------------
+    $(this).attr('class','btn btn-danger');
+
+    $("#modalprofesional").modal('hide');
+   //----------------
+
     casilla.attr("value", dic);
+    descripcion.attr("value",$(this).attr('value'));
    });
 
 
 
 
 });
+
+function boleano(b)
+{
+   var regresa;
+   if (b==true) 
+   {
+      regresa=false;
+   }else
+   {
+      if (b==false) 
+      {
+         regresa=true;
+      }
+   }
+   return regresa;
+}
+
 
 function submitForm(form)
 {

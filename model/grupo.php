@@ -6,10 +6,7 @@ class grupo
 {
 	 
 
-	public function set()
-	{
 
-	} 
 	public function vertodo()
 	{
 		require '../model/conexion.php';		
@@ -23,13 +20,14 @@ class grupo
 		
 		
 	} 
-	public function nueva($a,$b,$c)
+	public function nueva($a,$b,$c,$p)
 	{
-		require_once '../model/conexion.php';
+		require '../model/conexion.php';
 
-		mysqli_query($conn,"insert into colegio.grupos (clave,turno,carrera) values ('".$a."','".$b."','".$c."');");	
-
+		$consulta=mysqli_query($conn,"insert into grupos (clave,turno,carrera,cicloescolar) values ('{$a}','{$b}','{$c}','{$p}');");	
+		$n=mysqli_affected_rows($conn);
 		mysqli_close($conn);
+		return $n;
 	} 
 	public function borrar($clave)
 	{
@@ -40,7 +38,20 @@ class grupo
 
 		
 	} 
-	
+	function grupos_info($ciclo)
+	{
+		require '../model/conexion.php';		
+		$consulta=mysqli_query($conn,"select * from grupos where cicloescolar='{$ciclo}';");	
+		mysqli_close($conn);
+		return $consulta;
+	}
+		function ciclo_escolar()
+	{
+		require '../model/conexion.php';		
+		$consulta=mysqli_query($conn,"select cicloescolar from grupos;");	
+		mysqli_close($conn);
+		return $consulta;
+	}
 	
 
 

@@ -1,5 +1,5 @@
 <?php
-include "menu.php";
+include "admin.php";
 include "../controller/controller_recursos.php";
 ?>
 

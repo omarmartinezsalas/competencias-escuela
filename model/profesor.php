@@ -10,7 +10,7 @@ class profesor
 		//error clave repetida=1, correo repetido=2, 
 			require '../model/conexion.php';
 			$error=0;
-			$consulta_clave=$conn->prepare("select clave from colegio.profesores where clave=?;");
+			$consulta_clave=$conn->prepare("select clave from profesores where clave=?;");
 			$consulta_clave->bind_param("s",$clave);
 			$cr=$consulta_clave->execute();
 			$consulta_clave->store_result();
@@ -19,14 +19,14 @@ class profesor
 			
 			//echo "cr  {$resul_clave}";
 
-			$consulta_correo=$conn->prepare("select clave from colegio.profesores where correo=?;");
+			$consulta_correo=$conn->prepare("select clave from profesores where correo=?;");
 			$consulta_correo->bind_param("s",$correo);
 			$mr=$consulta_correo->execute();
 			$consulta_correo->store_result();
 			$resul_correo=$consulta_correo->num_rows();
 			$consulta_correo->close();
 
-			$inserta=$conn->prepare("insert into colegio.profesores 
+			$inserta=$conn->prepare("insert into profesores 
 				(clave,nombre,a_paterno,a_materno,correo,contrasena) 
 				values (?, ?, ?, ?, ?, ?);");
 			$inserta->bind_param('ssssss', $clave,$nombre,$a_paterno, $a_materno, $correo,$hash);
@@ -61,7 +61,30 @@ class profesor
 		return $corre;
 		
 	} 
-	
+	public function verifica_correo($correo)
+	{
+		require'../model/conexion.php';
+		//$consulta=$conn->prepare("select correo,clave from profesores where correo=?;");
+		$consulta=$conn->prepare("select correo,clave from profesores where correo=?;");
+		$consulta->bind_param("s", $correo);
+		$eje=$consulta->execute();
+		//$resultado=$consulta->store_result();
+		$respuesta=$consulta->get_result();
+		$num=$consulta->num_rows();
+		$row=$respuesta->fetch_row();
+
+		$consulta->close();
+		if ($num<1) 
+		{
+			//$resultado=null;
+		}else
+		{
+			//regresa resultado
+		}
+
+		return $respuesta;
+
+	}
 	public function borrar($clave)
 	{
 		require '../model/conexion.php';
@@ -190,8 +213,79 @@ class profesor
 
 			return $efecto;
 	}
+	function solicita_cambio_password($token ,$clave)
+	{
+		require '../model/conexion.php';
+			$error=0;
+			$consulta_clave=$conn->prepare("update profesores set target=? where clave=?;");
+			$consulta_clave->bind_param("ss",$token, $clave);
+			$consulta_clave->execute();
+			$consulta_clave->store_result();
+			$resul_clave=$consulta_clave->affected_rows;
+			$consulta_clave->close();
 
+			return $resul_clave;
+	}
+	function aceptar_cambio_password($token ,$clave_p)
+	{
+		require '../model/conexion.php';
+			$error=0;
+			$consulta=mysqli_query($conn,"select target from profesores where clave='{$clave_p}'");
+			while ($r=mysqli_fetch_row($consulta)) 
+			{
+				echo "result{$r[0]}";
+				if ($r[0]==$token) 
+				{
+					
+				}else{
+					$error=1;
+				}
+			}
+			mysqli_close($conn);
+			return $error;
+	}
+	function editar_pass_email($clave,$nueva)
+	{
+		require '../model/conexion.php';
+			//$cadena="{$clave}";
+			$cadena = "hola".rand(1,9999999).date('Y-m-d');
+   			$token = sha1($cadena);
 
+   			$hash = password_hash($nueva, PASSWORD_BCRYPT);
+			$consulta_c=$conn->prepare("update profesores set contrasena=?, target=?  where clave=?;");
+			$consulta_c->bind_param("sss",$hash,$cadena,$clave);
+			$consulta_c->execute();
+			$consulta_c->store_result();
+			$efecto=$consulta_c->affected_rows;
+			$er=$consulta_c->error;
+			$consulta_c->close();
+			echo "{$er}";
+			return $efecto;
+	}
+	function editar_pass_email2($clave,$nueva)
+	{
+		require '../model/conexion.php';
+			//$cadena="{$clave}";
+			$cadena = "hola";
+   			$clave="{$clave}";
+   			$hash = password_hash($nueva, PASSWORD_BCRYPT);
+   			echo "hash={$hash}";
+   			//$consulta=$conn->query("update profesores set contrasena='{$hash}', target='{$cadena}'  where clave='{$clave}';");
+
+   			$consulta=$conn->query("update profesores set contrasena='{$hash}'  where clave='{$clave}';");
+   			$afectadas=$conn->affected_rows;
+   			mysqli_close($conn);
+
+			
+			return $afectadas;
+	}
+	function lista()
+	{
+		require '../model/conexion.php';
+			$cuenta=mysqli_query($conn,"select clave,nombre,a_paterno,a_materno,correo from profesores where rol='normal';");	
+			mysqli_close($conn);
+		return $cuenta;
+	}
 
 
 }

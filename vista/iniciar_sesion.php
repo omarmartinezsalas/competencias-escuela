@@ -1,13 +1,17 @@
-<html>
-<head>
 	<?php
 	session_start();
 	if (isset($_SESSION['clave'])) 
 	{
-		header("Location: ../vista/wellcome.php");
+		//header("Location: ../vista/wellcome.php");
+		echo '<script type="text/javascript">';
+		echo 'window.location.href="../vista/wellcome.php";';
+		echo '</script>';
 	}
 
 	?>
+<html>
+<head>
+
 	<title>Registro profesor</title>
 
  	<meta charset="utf-8">
@@ -39,5 +43,7 @@
 		<span class="icon-home3 "></span>
 
 	</button></a></center>
+
+	<center><small><a href="f_email.php">¿No recuerda la contraseña?</a></small></center>
 </body>
 </html>

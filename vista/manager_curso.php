@@ -6,12 +6,13 @@ include "../controller/controller_recursos.php";
 
 ?>
 	<div class="col-lg-9 col-md-12 col-sm-12 col-xs-12 contenido" id="contenido">
-		<h1>Evaluacion</h1>
-		<small>Examen-20% / Orientacion-10% / tutoria-10% / Evaluacion continua-60%<br></small>
+		<h1>Evaluacion parcial <?php echo "{$_SESSION['parcial']}"; ?></h1>
+		<small>Examen-20% / Orientacion-10% / tutoria-10% / Evaluacion continua-60%</small>
+		<a href="manual.html#parciales" align="right" target="_blank"><button class="btn btn-warning" data-toggle="tooltip" data-placement="left" title="Manual de ayuda"><span class="icon-question"></span></button></a>
 		<?php 
 		
 
-		echo"{$_SESSION['curso']}/{$_SESSION['parcial']}";
+		//echo"{$_SESSION['curso']}/{$_SESSION['parcial']}";
 		//echo($_SESSION['clave']);
 		//manager_curso($_SESSION['curso'],$_SESSION['parcial']);
 
@@ -24,14 +25,28 @@ include "../controller/controller_recursos.php";
 		?>			
 
 		<br>
-		<center>
-			<a href="evaluacion_com.php?competencias=genericas"><button class="btn btn-warning">Evaluacion genericas</button></a>
-			<a href="evaluacion_com.php?competencias=diciplinares"><button class="btn btn-warning">Evaluacion diciplinares</button></a>
-			<a href="evaluacion_com.php?competencias=profesionales"><button class="btn btn-warning">Evaluacion profesionales</button></a>
+		<table border="0">
+			<tr>
+				<td>
+					<a href="evaluacion_com.php?competencias=genericas" target="_blank"><button class="btn btn-warning">Evaluacion genericas</button></a>
+				</td>
+				<td>
+					<a href="evaluacion_com.php?competencias=diciplinares" target="_blank"><button class="btn btn-warning">Evaluacion disciplinares</button></a>		
+				</td>
+				<td>
+					<a href="evaluacion_com.php?competencias=profesionales" target="_blank"><button class="btn btn-warning">Evaluacion profesionales</button></a>		
+				</td>
+			</tr>
+
+		</table>
+		
+			
+			
+			
 
 
 
-		</center>
+		
 	</div>
 
 

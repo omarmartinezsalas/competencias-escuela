@@ -34,14 +34,14 @@ class competencia_diciplinar
 	{
 		require_once '../model/conexion.php';
 
-		mysqli_query($conn,"insert into colegio.competencias_diciplinares (clave, descripcion, categoria,nivel) values ('".$clave."','".$descripcion."','".$categoria."','".$nivel."');");	
+		mysqli_query($conn,"insert into competencias_diciplinares (clave, descripcion, categoria,nivel) values ('".$clave."','".$descripcion."','".$categoria."','".$nivel."');");	
 
 		mysqli_close($conn);
 	} 
 	public function borrar($clave)
 	{
 		require_once '../model/conexion.php';
-		mysqli_query($conn,"delete from colegio.competencias_diciplinares  where clave='".$clave."';");
+		mysqli_query($conn,"delete from competencias_diciplinares  where clave='".$clave."';");
 			mysqli_close($conn);
 	} 
 	public function editar()
@@ -51,11 +51,11 @@ class competencia_diciplinar
 	public function agregar_competencia_curso($curso,$competencia,$parcial)
 	{
 		require_once '../model/conexion.php';
-		$c=mysqli_query($conn,"select * from colegio.c_diciplinar where clave_curso='{$curso}' and clave_competencia='{$competencia}' and parcial='{$parcial}';");
+		$c=mysqli_query($conn,"select * from c_diciplinar where clave_curso='{$curso}' and clave_competencia='{$competencia}' and parcial='{$parcial}';");
 		echo"affect roe=  ".mysqli_num_rows($c)."    ";
 		if(mysqli_num_rows($c)==0)
 		{
-			mysqli_query($conn,"insert into colegio.c_diciplinar (clave_curso,clave_competencia,parcial) values ('{$curso}','{$competencia}','{$parcial}');");
+			mysqli_query($conn,"insert into c_diciplinar (clave_curso,clave_competencia,parcial) values ('{$curso}','{$competencia}','{$parcial}');");
 			echo"agregado";
 		}else
 		{
@@ -68,7 +68,8 @@ class competencia_diciplinar
 	public function eliminar_competencia_curso($curso,$competencia,$parcial)
 	{
 		require_once '../model/conexion.php';
-		$c=mysqli_query($conn,"delete from colegio.c_diciplinar where clave_curso='{$curso}' and clave_competencia='{$competencia}' and parcial='{$parcial}';");
+		$c=mysqli_query($conn,"delete from c_diciplinar where clave_curso='{$curso}' and clave_competencia='{$competencia}' and parcial='{$parcial}';");
+		$d=mysqli_query($conn,"delete from curso_diciplinar where clave_curso='{$curso}' and clave_competencia='{$competencia}';");
 			echo"affect roe=  ".mysqli_num_rows($c)."    ";
 
 		
@@ -79,6 +80,22 @@ class competencia_diciplinar
 		require '../model/conexion.php';
 
 		$result=mysqli_query($conn,"select descripcion,categoria,nivel,clave_competencia from competencias_diciplinares,c_diciplinar where c_diciplinar.clave_competencia=competencias_diciplinares.clave and c_diciplinar.clave_curso='{$curso}' and parcial='{$parcial}';");
+		  //while ($row = mysqli_fetch_row($result)) {
+              //  echo"    {$row[0]}    {$row[1]}    {$row[2]}    <br>";
+            //}	
+		if(mysqli_affected_rows($conn)==0)
+		{
+			$result=null;
+		}
+
+		mysqli_close($conn);
+		return $result;	
+	} 
+	public function ver_competencias_seleccionadas_curso($curso)
+	{
+		require '../model/conexion.php';
+
+		$result=mysqli_query($conn,"select descripcion,categoria,nivel,clave_competencia from competencias_diciplinares,c_diciplinar where c_diciplinar.clave_competencia=competencias_diciplinares.clave and c_diciplinar.clave_curso='{$curso}';");
 		  //while ($row = mysqli_fetch_row($result)) {
               //  echo"    {$row[0]}    {$row[1]}    {$row[2]}    <br>";
             //}	
@@ -186,6 +203,34 @@ class competencia_diciplinar
 		$descripcion->close();
 
 		return $resultado;
+	} 
+	public function arreglo_competencias_disciplinares_general($clave,$parcial)
+	{
+		require '../model/conexion.php';	
+		$arreglo=array();
+		$i=0;
+		$descripcion=$conn->prepare("select c_diciplinar.clave_competencia from c_diciplinar where clave_curso=? and parcial=?;");
+		$descripcion->bind_param("ii", $clave,$parcial);
+		$descripcion->execute();
+		$resultado = $descripcion->get_result();
+		
+		if (mysqli_num_rows($resultado)>0) 
+		{
+			while ($clave_competencia=mysqli_fetch_row($resultado)) 
+			{
+				$arreglo[$i]=$clave_competencia[0];
+				$i+=1;
+
+			}
+		}else
+		{
+			$resultado=null;
+		}
+
+		$descripcion->close();
+
+
+		return $arreglo;
 	} 
 
 

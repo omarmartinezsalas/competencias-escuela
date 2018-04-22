@@ -9,8 +9,13 @@ include "../controller/controller_recursos.php";
 ?>
 
 <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12 contenido">
-	<form name="registro_grupo" method="post" action="../controller/controller_actividad.php?accion=agregar">
-		<h1>Registro Actividad</h1>
+	<h1>Registro Actividad</h1>
+  <a href="manual.html#registrar_actividad" align="right" target="_blank"><button class="btn btn-warning"><span class="icon-question"></span></button></a>
+  <form name="registro_grupo" method="post" action="../controller/controller_actividad.php?accion=agregar">
+		
+
+    
+
 		<label>Descripcion</label><br>
 		<input class="form-control form-control-lg" name="descripcion" type="text" maxlength="100" placeholder="" required></input><br>
 		<label>Clave de curso</label><br>
@@ -33,33 +38,40 @@ include "../controller/controller_recursos.php";
     <h5>+ Competencias genericas</h5>
 		<button id="addgenerica" type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalLong">+</button>
     <button id="quitgenerica" type="button" class="btn btn-danger">-</button>
-		<input id="generica" type="text" name="generica" placeholder="Competencia generica" readonly></input><br>
+		<input id="generica" type="text" name="generica" placeholder="Competencia generica" readonly></input>
+    <input id="descripcion_generica1" type="text" name="descripcion_generica1" readonly disabled="true"></input><br>
 
     <button id="addgenerica2" type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalLong">+</button>
     <button id="quitgenerica2" type="button" class="btn btn-danger">-</button>
-    <input id="generica2" type="text" name="generica2" placeholder="Competencia generica" readonly></input><br>
+    <input id="generica2" type="text" name="generica2" placeholder="Competencia generica" readonly></input>
+    <input id="descripcion_generica2" type="text" name="descripcion_generica2" readonly disabled="true"></input><br>
 
     <button id="addgenerica3" type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalLong">+</button>
     <button id="quitgenerica3" type="button" class="btn btn-danger">-</button>
-    <input id="generica3" type="text" name="generica3" placeholder="Competencia generica" readonly></input><br>
+    <input id="generica3" type="text" name="generica3" placeholder="Competencia generica" readonly></input>
+    <input id="descripcion_generica3" type="text" name="descripcion_generica3" readonly disabled="true"></input><br>
 		<!-- agregar competencia dciplinar -->
     <h5>+ Competencias disciplinares</h5>
     <button id="adddiciplinar" type="button" class="btn btn-success"  data-toggle="modal" data-target="#modaldiciplinar">+</button>
     <button id="quitdiciplinar" type="button" class="btn btn-danger">-</button>
-    <input id="diciplinar" type="text" name="diciplinar" placeholder="Competencia diciplinar" readonly></input><br>
+    <input id="diciplinar" type="text" name="diciplinar" placeholder="Competencia diciplinar" readonly></input>
+    <input id="descripcion_disciplinar1" type="text" name="descripcion_disciplinar1" readonly disabled="true"></input><br>
 
     <button id="adddiciplinar2" type="button" class="btn btn-success"  data-toggle="modal" data-target="#modaldiciplinar">+</button>
     <button id="quitdiciplinar2" type="button" class="btn btn-danger">-</button>
-    <input id="diciplinar2" type="text" name="diciplinar2" placeholder="Competencia diciplinar" readonly></input><br>
+    <input id="diciplinar2" type="text" name="diciplinar2" placeholder="Competencia diciplinar" readonly></input>
+    <input id="descripcion_disciplinar2" type="text" name="descripcion_disciplinar2" readonly disabled="true"></input><br>
     <!-- agregar competencia pro-->
     <h5>+ Competencias profesionales</h5>
     <button id="addprofesional" type="button" class="btn btn-success" data-toggle="modal" data-target="#modalprofesional">+</button>
     <button id="quitprofesional" type="button" class="btn btn-danger">-</button>
-    <input id="profesional" type="text" name="profesional" placeholder="Competencia profesional" readonly></input><br>
+    <input id="profesional" type="text" name="profesional" placeholder="Competencia profesional" readonly></input>
+    <input id="descripcion_profesional1" type="text" name="descripcion_profesional1" readonly disabled="true"></input><br>
 
     <button id="addprofesional2" type="button" class="btn btn-success" data-toggle="modal" data-target="#modalprofesional">+</button>
     <button id="quitprofesional2" type="button" class="btn btn-danger">-</button>
-    <input id="profesional2" type="text" name="profesional2" placeholder="Competencia profesional" readonly></input><br>
+    <input id="profesional2" type="text" name="profesional2" placeholder="Competencia profesional" readonly></input>
+    <input id="descripcion_profesional2" type="text" name="descripcion_profesional2" readonly disabled="true"></input><br>
 </div>
 <!-- boton envia formulario -->
     <br><center><button type="submit" class="btn btn-primary">Registrar</button></center>
@@ -87,7 +99,8 @@ include "../controller/controller_recursos.php";
                   <option value="aprende de forma autonoma">Aprende de forma autonoma</option>
                   <option value="trabaja de forma colaborativa">Trabaja de forma colaborativa</option>
             		</select>-->
-            	
+            	   
+                  <input type="hidden" name="clave_curso" value="<?php echo $_SESSION['curso'];?>"></input>
         		    <input type="submit" name="add_com_act" class="btn btn-primary" id="add_com" value="Buscar"></input>
         	     </form>
               <div id="mensajeg"></div>
@@ -110,7 +123,7 @@ include "../controller/controller_recursos.php";
             <div class="modal-body">
                <form id="form_diciplinar" method="post" action="../controller/controller_add_generica_act.php">
                
-                <select name="categoriad">
+                <!--<select name="categoriad">
                   <option value="ciencias experimentales">Ciencias experimentales</option>
                   <option value="comunicacion">Comunicacion</option>
                   <option value="ciencias sociales">Ciencias sociales</option>
@@ -119,8 +132,9 @@ include "../controller/controller_recursos.php";
                 <select name="niveld">
                   <option value="basica">Basica</option>
                   <option value="extendida">Extendida</option>    
-                </select>
-                <input type="submit" name="add_com_act" class="btn btn-primary" id="add_diciplinar"></input>
+                </select>-->
+                <input type="hidden" name="clave_curso" value="<?php echo $_SESSION['curso'];?>"></input>
+                <input type="submit" name="add_com_act" class="btn btn-primary" id="add_diciplinar" value="Buscar"></input>
                </form>
               <div id="mensajed"></div>
             </div>
@@ -141,7 +155,7 @@ include "../controller/controller_recursos.php";
         </div>
             <div class="modal-body">
                <form id="form_profesional" method="post" action="../controller/controller_add_generica_act.php">
-                <select name="categoria">
+                <!--<select name="categoria">
                   <option value="ciencias experimentales">Ciencias experimentales</option>
                   <option value="comunicacion">Comunicacion</option>
                   <option value="ciencias sociales">Ciencias sociales</option>
@@ -150,8 +164,9 @@ include "../controller/controller_recursos.php";
                 <select name="nivel">
                   <option value="basica">Basica</option>
                   <option value="extendida">Extendida</option>    
-                </select>
-                <input type="submit" name="add_com_act" class="btn btn-primary" id="add_profesional"></input>
+                </select>-->
+                  <input type="hidden" name="clave_curso" value="<?php echo $_SESSION['curso'];?>"></input>
+                <input type="submit" name="add_com_act" class="btn btn-primary" id="add_profesional" value="Buscar"></input>
                </form>
               <div id="mensajep"></div>
             </div>

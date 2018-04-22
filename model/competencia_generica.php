@@ -8,7 +8,7 @@ class competencia_generica
 			//$rawdata = array();
 
 			//$i=0;
-		$result=mysqli_query($conn,"select * from colegio.competencias_genericas;");
+		$result=mysqli_query($conn,"select * from competencias_genericas;");
 		  //while ($row = mysqli_fetch_row($result)) {
                 //echo"    {$row[0]}    {$row[1]}    {$row[2]}    <br>";
 		  //		 $rawdata[$i] = $row;
@@ -20,31 +20,29 @@ class competencia_generica
 		//return $result;
 		return $result;
 	} 
-	public function verporid($id)
+	public function verporid($clave)
 	{
 		require '../model/conexion.php';
 
-		$result=mysqli_query($conn,"select * from colegio.competencias_genericas where clave='".$clave."'; ");
-		  while ($row = mysqli_fetch_row($result)) {
-                echo"    {$row[0]}    {$row[1]}    {$row[2]}    <br>";
-            }	
-
-
-		mysqli_close($conn);
-		
+		$consulta=$conn->prepare("select descripcion,categoria from competencias_genericas where clave=?;");
+			$consulta->bind_param("s",$clave);
+			$consulta->execute();
+			$respuesta=$consulta->get_result();
+			$consulta->close();
+			return $respuesta;
 	} 
 	public function nueva($clave, $descripcion, $categoria)
 	{
 		require '../model/conexion.php';
 
-		mysqli_query($conn,"insert into colegio.competencias_genericas (clave, descripcion, categoria) values ('".$clave."','".$descripcion."','".$categoria."');");	
+		mysqli_query($conn,"insert into competencias_genericas (clave, descripcion, categoria) values ('".$clave."','".$descripcion."','".$categoria."');");	
 
 		mysqli_close($conn);
 	} 
 	public function borrar($clave)
 	{
 		require '../model/conexion.php';
-		mysqli_query($conn,"delete from colegio.competencias_genericas where clave='".$clave."';");
+		mysqli_query($conn,"delete from competencias_genericas where clave='".$clave."';");
 			mysqli_close($conn);
 	} 
 	public function editar()
@@ -54,7 +52,7 @@ class competencia_generica
 	public function ver_competencias()
 	{
 		require '../model/conexion.php';	
-		$result=mysqli_query($conn,"select * from colegio.competencias_genericas ORDER BY categoria;");
+		$result=mysqli_query($conn,"select * from competencias_genericas ORDER BY categoria;");
 		mysqli_close($conn);	
 		return $result;
 	} 
@@ -68,11 +66,11 @@ class competencia_generica
 	public function agregar_competencia_curso($curso,$competencia,$parcial)
 	{
 		require_once '../model/conexion.php';
-		$c=mysqli_query($conn,"select * from colegio.c_generica where clave_curso='{$curso}' and clave_competencia='{$competencia}' and parcial='{$parcial}' ;");
+		$c=mysqli_query($conn,"select * from c_generica where clave_curso='{$curso}' and clave_competencia='{$competencia}' and parcial='{$parcial}' ;");
 		echo"affect roe=  ".mysqli_num_rows($c)."    ";
 		if(mysqli_num_rows($c)==0)
 		{
-			mysqli_query($conn,"insert into colegio.c_generica (clave_curso,clave_competencia,parcial) values ('{$curso}','{$competencia}','{$parcial}');");
+			mysqli_query($conn,"insert into c_generica (clave_curso,clave_competencia,parcial) values ('{$curso}','{$competencia}','{$parcial}');");
 			echo"agregado";
 		}else
 		{
@@ -85,10 +83,19 @@ class competencia_generica
 	public function eliminar_competencia_curso($curso,$competencia,$parcial)
 	{
 		require_once '../model/conexion.php';
-		$c=mysqli_query($conn,"delete from colegio.c_generica where clave_curso='{$curso}' and clave_competencia='{$competencia}' and parcial='{$parcial}';");
+		$c=mysqli_query($conn,"delete from c_generica where clave_curso='{$curso}' and clave_competencia='{$competencia}' and parcial='{$parcial}';");
+
+		$d=mysqli_query($conn,"delete from curso_generica where clave_curso='{$curso}' and clave_competencia='{$competencia}';");
 			echo"affect roe=  ".mysqli_num_rows($c)."    ";
 			mysqli_close($conn);
 	}  
+	public function eliminar_competencia_actividad($curso,$competencia)
+	{
+		require_once '../model/conexion.php';
+		$c=mysqli_query($conn,"delete from curso_generica where clave_curso='{$curso}' and clave_competencia='{$competencia}';");
+			echo"affect roe=  ".mysqli_num_rows($c)."    ";
+			mysqli_close($conn);
+	} 
 	public function ver_competencias_curso($curso,$parcial)
 	{
 		require '../model/conexion.php';
@@ -101,10 +108,22 @@ class competencia_generica
 		mysqli_close($conn);
 		return $result;	
 	} 
+	public function ver_atributo_seleccionada_curso($curso)
+	{
+		require '../model/conexion.php';
+
+		$result=mysqli_query($conn,"select atributos.clave_competencia,atributos.descripcion,competencias_genericas.categoria,atributos.id from atributos,c_generica,competencias_genericas where c_generica.clave_competencia=atributos.id and atributos.clave_competencia=competencias_genericas.clave and c_generica.clave_curso='{$curso} ';");
+		if(mysqli_affected_rows($conn)==0)
+		{
+			$result=null;
+		}
+		mysqli_close($conn);
+		return $result;	
+	} 
 	public function ver_competencias_filtro($categoria)
 	{
 		require '../model/conexion.php';	
-		$result=mysqli_query($conn,"select * from colegio.competencias_genericas where categoria='{$categoria}';");
+		$result=mysqli_query($conn,"select * from competencias_genericas where categoria='{$categoria}';");
 		mysqli_close($conn);	
 		return $result;
 	} 
@@ -174,6 +193,33 @@ class competencia_generica
 		$descripcion->close();
 
 		return $resultado;
+	} 
+	public function arreglo_competencias_generales($clave,$parcial)
+	{
+		require '../model/conexion.php';	
+		$arreglo=array();
+		$i=0;
+		$descripcion=$conn->prepare("select c_generica.clave_competencia from c_generica where clave_curso=? and parcial=?;");
+		$descripcion->bind_param("ii", $clave,$parcial);
+		$descripcion->execute();
+		$resultado = $descripcion->get_result();
+
+		if (mysqli_num_rows($resultado)>0) 
+		{
+			while ($clave_competencia=mysqli_fetch_row($resultado)) 
+			{
+				$arreglo[$i]=$clave_competencia[0];
+				$i+=1;
+
+			}
+		}else
+		{
+			$resultado=null;
+		}
+
+		$descripcion->close();
+
+		return $arreglo;
 	} 
 }
 ?> 

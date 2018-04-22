@@ -1,7 +1,5 @@
 <?php
 
-
-
 class competencia_profesional 
 {
 	 
@@ -10,7 +8,7 @@ class competencia_profesional
 	{
 		require_once '../model/conexion.php';
 
-		$result=mysqli_query($conn,"select * from colegio.competencias_profesionales;");
+		$result=mysqli_query($conn,"select * from competencias_profesionales;");
 		  //while ($row = mysqli_fetch_row($result)) {
               //  echo"    {$row[0]}    {$row[1]}    {$row[2]}    <br>";
             //}	
@@ -23,7 +21,7 @@ class competencia_profesional
 	{
 		require_once '../model/conexion.php';
 
-		$result=mysqli_query($conn,"select * from colegio.competencias_profesionales where clave='".$clave."'; ");
+		$result=mysqli_query($conn,"select * from competencias_profesionales where clave='".$clave."'; ");
 		  while ($row = mysqli_fetch_row($result)) {
                 echo"    {$row[0]}    {$row[1]}    {$row[2]}    <br>";
             }	
@@ -35,14 +33,14 @@ class competencia_profesional
 	{
 		require_once '../model/conexion.php';
 
-		mysqli_query($conn,"insert into colegio.competencias_profesionales (clave, descripcion, categoria,nivel) values ('".$clave."','".$descripcion."','".$categoria."','".$nivel."');");	
+		mysqli_query($conn,"insert into competencias_profesionales (clave, descripcion, categoria,nivel) values ('".$clave."','".$descripcion."','".$categoria."','".$nivel."');");	
 
 		mysqli_close($conn);
 	} 
 	public function borrar($clave)
 	{
 		require_once '../model/conexion.php';
-		mysqli_query($conn,"delete from colegio.competencias_profesionales where clave='".$clave."';");
+		mysqli_query($conn,"delete from competencias_profesionales where clave='".$clave."';");
 			mysqli_close($conn);
 	} 
 	public function editar()
@@ -52,11 +50,11 @@ class competencia_profesional
 	public function agregar_competencia_curso($curso,$competencia,$parcial)
 	{
 		require_once '../model/conexion.php';
-		$c=mysqli_query($conn,"select * from colegio.c_profesional where clave_curso='{$curso}' and clave_competencia='{$competencia}' and parcial='{$parcial}';");
+		$c=mysqli_query($conn,"select * from c_profesional where clave_curso='{$curso}' and clave_competencia='{$competencia}' and parcial='{$parcial}';");
 		echo"affect roe=  ".mysqli_num_rows($c)."    ";
 		if(mysqli_num_rows($c)==0)
 		{
-			mysqli_query($conn,"insert into colegio.c_profesional (clave_curso,clave_competencia,parcial) values ('{$curso}','{$competencia}','{$parcial}');");
+			mysqli_query($conn,"insert into c_profesional (clave_curso,clave_competencia,parcial) values ('{$curso}','{$competencia}','{$parcial}');");
 			echo"agregado";
 		}else
 		{
@@ -69,7 +67,9 @@ class competencia_profesional
 	public function eliminar_competencia_curso($curso,$competencia,$parcial)
 	{
 		require '../model/conexion.php';
-		$c=mysqli_query($conn,"delete from colegio.c_profesional where clave_curso='{$curso}' and clave_competencia='{$competencia}' and parcial='{$parcial}';");
+		$c=mysqli_query($conn,"delete from c_profesional where clave_curso='{$curso}' and clave_competencia='{$competencia}' and parcial='{$parcial}';");
+
+			$c=mysqli_query($conn,"delete from curso_profesional where clave_curso='{$curso}' and clave_competencia='{$competencia}';");
 		echo"affect roe=  ".mysqli_num_rows($c)."    ";
 		
 			mysqli_close($conn);
@@ -79,6 +79,21 @@ class competencia_profesional
 		require '../model/conexion.php';
 
 		$result=mysqli_query($conn,"select descripcion,categoria,nivel,clave_competencia from competencias_profesionales,c_profesional where c_profesional.clave_competencia=competencias_profesionales.clave and c_profesional.clave_curso='{$curso}' and parcial='{$parcial}';");
+		  //while ($row = mysqli_fetch_row($result)) {
+              //  echo"    {$row[0]}    {$row[1]}    {$row[2]}    <br>";
+            //}	
+		if(mysqli_affected_rows($conn)==0)
+		{
+			$result=null;
+		}
+		mysqli_close($conn);
+		return $result;	
+	} 
+	public function ver_competencias_seleccionadas_curso($curso)
+	{
+		require '../model/conexion.php';
+
+		$result=mysqli_query($conn,"select descripcion,categoria,nivel,clave_competencia from competencias_profesionales,c_profesional where c_profesional.clave_competencia=competencias_profesionales.clave and c_profesional.clave_curso='{$curso}';");
 		  //while ($row = mysqli_fetch_row($result)) {
               //  echo"    {$row[0]}    {$row[1]}    {$row[2]}    <br>";
             //}	
@@ -157,7 +172,7 @@ class competencia_profesional
 
 		return $resultado;
 	} 
-	public function contar_con_c_generica($clave,$parcial)
+	public function contar_con_c_generica($clave,$parcial)//competencia general
 	{
 		require '../model/conexion.php';	
 
@@ -185,7 +200,33 @@ class competencia_profesional
 
 		return $resultado;
 	} 
+	public function arreglo_competencias_profesionales($clave,$parcial)
+	{
+		require '../model/conexion.php';	
+		$arreglo=array();
+		$i=0;
+		$descripcion=$conn->prepare("select c_profesional.clave_competencia from c_profesional where clave_curso=? and parcial=?;");
+		$descripcion->bind_param("ii", $clave,$parcial);
+		$descripcion->execute();
+		$resultado = $descripcion->get_result();
+		
+			if (mysqli_num_rows($resultado)>0) 
+		{
+			while ($clave_competencia=mysqli_fetch_row($resultado)) 
+			{
+				$arreglo[$i]=$clave_competencia[0];
+				$i+=1;
 
+			}
+		}else
+		{
+			$resultado=null;
+		}
+
+		$descripcion->close();
+
+		return $arreglo;
+	} 
 
 
 

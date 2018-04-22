@@ -14,7 +14,7 @@ $(document).ready(function(){
     	alert("El archivo  " + extensiones + "no es válido");
 	}else
 	{
-		$(this).unbind('click').click()
+		$(this).unbind('click').click();
 		//$('#simg').submit();
 		//submitForm(form);
 		//alert("send");

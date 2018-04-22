@@ -52,9 +52,10 @@ switch($accion)
 	$clave=$_GET['clave'];
 	$cpro=new curso();
 	$cpro->borrar($clave);
-	header ("Location: ../controller/sesion.php?accion=deselecciona");
-
-	
+	//header ("Location: ../controller/sesion.php?accion=deselecciona");
+	echo '<script type="text/javascript">';
+	echo 'window.location.href="../controller/sesion.php?accion=deselecciona";';
+	echo '</script>';
 	break;
 
 	case 'set':

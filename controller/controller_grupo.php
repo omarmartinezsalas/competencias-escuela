@@ -14,11 +14,22 @@ switch($accion)
 	$clave=$_POST['clave'];
 	$turno=$_POST['turno'];
 	$carrera=$_POST['carrera'];
-	
+	$ciclo=$_POST['ciclo'];
 	$clase_pro=new grupo();
-	$clase_pro->nueva($clave,$turno,$carrera);
+	$num=$clase_pro->nueva($clave,$turno,$carrera,$ciclo);
 	
-	header ("Location: ../vista/registro_grupo.php");
+	echo "{$num}";
+	if ($num>=1) 
+	{
+		echo "<h1>Registrado</h1>";
+	}else
+	{
+		echo "<h1>Error: no registrado</h1>";
+	}
+	
+	echo '<script type="text/javascript">';
+	echo 'window.location.href="../vista/registro_grupo.php";';
+	echo '</script>';
 	break;
 
 
@@ -29,7 +40,10 @@ switch($accion)
 	$clave=$_GET['clave'];
 	$clase_pro=new competencia_profesional();
 	$clase_pro->borrar($clave);
-	header ("Location: ../vista/competencias_profesionales.php");
+	//header ("Location: ../vista/competencias_profesionales.php");
+	echo '<script type="text/javascript">';
+	echo 'window.location.href="../vista/competencias_profesionales.php";';
+	echo '</script>';
 	break;
 
 	case 'set':

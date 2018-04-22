@@ -1,11 +1,24 @@
 <?php
  header('Content-Type: text/html; charset=UTF-8');
 session_start();
-if (!isset($_SESSION['clave'])) {
+if (!isset($_SESSION['clave'])) 
+{
   header('Location: ../index.html');
 	//echo"it works";
-} else {
-  //echo'session activada';
+  exit("no ha iniciado sesion");
+
+} else 
+{
+	if ($_SESSION['rol']=="normal") 
+	{
+		
+	}else
+	{
+		echo '<script type="text/javascript">';
+		echo 'window.location.href="../vista/admin.php";';
+		echo '</script>';	
+	}
+  
 }
 ?>
 
@@ -18,8 +31,8 @@ if (!isset($_SESSION['clave'])) {
 
 	<title>inicio</title>
 	 <!-- Required meta tags -->
-    <meta charset="UTF-8">
-
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
     <!-- Bootstrap CSS -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0 , shrink-to-fit=no , user-scalable=no">
@@ -72,7 +85,7 @@ if (!isset($_SESSION['clave'])) {
 	<div class="row" style=" color:#0B0B3B;">
 		<div class="col-lg-3 col-md-12 col-sm-12  col-xs-12" style="background-color: #015249;">
 			<div class="fondo-azul menu"> 
-				<nav class="navbar navbar-toggleable-md navbar-light" style="background-color:#015249;">
+				<nav class="navbar navbar-toggleable-md navbar-light bg-light" style="background-color:#015249;"><!--navbar-light-->
 			  		<a class="navbar-brand" href="#"></a>
 			  		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 			  	    <span class="navbar-toggler-icon"></span>
@@ -88,7 +101,9 @@ if (!isset($_SESSION['clave'])) {
 							if ($_SESSION['imagen']==null)
 							{
 								echo "
-									<center><a class='nav-link'><img src='../resource/imageni/cecy.jpg'  class='img-fluid redondo' width='20%' height='50px' align='center'></img>
+									<center><a class='nav-link'>
+									<img src='../resource/imageni/cecytem.jpg'  class='img-fluid redondo' width='40%' height='50px' align='center'>
+									</img>
 										</a></center>
 								";
 							}else
@@ -104,26 +119,27 @@ if (!isset($_SESSION['clave'])) {
 
 						</li>
 
-						<li class="nav-item"><a class="nav-link" href="wellcome.php">Inicio</a></li>
+						<li class="nav-item"><a style="color:#57BC90;" class="nav-link" href="wellcome.php">Inicio</a></li>
 						<?php
 						if(isset($_SESSION['curso']))
 						{
-							echo"<li class='nav-item'><a class='nav-link' href='manager_curso.php'>{$_SESSION['curso']}/{$_SESSION['parcial']}</a></li>";
+							echo"<li class='nav-item'><a style='color:#57BC90;' class='nav-link' href='manager_curso.php'>{$_SESSION['materia']}/{$_SESSION['grupo']}/{$_SESSION['parcial']}</a></li>";
 						}
 						?>
 						<hr>
-						<li class="nav-item"><a class="nav-link" href="Competencias_genericas.php">Genericas</a></li>
-						<li class="nav-item"><a class="nav-link" href="Competencias_diciplinares.php">Disciplinares</a></li>
-						<li class="nav-item"><a class="nav-link" href="Competencias_profesionales.php">Profesionales</a></li>
+						<li class="nav-item">*Competencias*</li>
+						<li class="nav-item"><a style="color:#57BC90;" class="nav-link" href="competencias_genericas.php">Genericas</a></li>
+						<li class="nav-item"><a style="color:#57BC90;" class="nav-link" href="competencias_diciplinares.php">Disciplinares</a></li>
+						<li class="nav-item"><a style="color:#57BC90;" class="nav-link" href="competencias_profesionales.php">Profesionales</a></li>
 						<!--<li class="nav-item"><a class="nav-link" href="registro_atributos.php">Registrar atributo</a></li>-->
 						<!--<li class="nav-item"><a href="registro_profesor.php">Registrar</a></li>-->
 						<!--<li class="nav-item"><a href="iniciar_sesion.php">login</a></li>-->
 						<hr>
-						<li class="nav-item"><a class="nav-link" href="Regstro_actividad.php">registro actividad</a></li>
+						<li class="nav-item"><a style="color:#57BC90;" class="nav-link" href="regstro_actividad.php">Registrar actividad</a></li>
 						<hr>
-						<li class="nav-item"><a class="nav-link" href="Registro_alumno.php">registro alumno</a></li>
-						<li class="nav-item"><a class="nav-link" href="Registro_grupo.php">registro grupo</a></li>
-						<li class="nav-item"><a class="nav-link"  href="Registro_curso.php">registro curso</a></li>
+						<!--<li class="nav-item"><a class="nav-link" href="Registro_alumno.php">registro alumno</a></li>-->
+						<!--<li class="nav-item"><a class="nav-link" href="Registro_grupo.php">registro grupo</a></li>-->
+						<li class="nav-item"><a style="color:#57BC90;" class="nav-link"  href="registro_curso.php">Registrar curso</a>
 						
 						
 						</center>

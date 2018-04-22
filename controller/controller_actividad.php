@@ -72,7 +72,10 @@ switch($accion)
 		$resul7=$add_competencias->competencia_actividad_profesional($clave,$p2,$actividad);
 	}
 
-	header ("Location: ../vista/regstro_actividad.php");
+	//header ("Location: ../vista/regstro_actividad.php");
+	echo '<script type="text/javascript">';
+	echo 'window.location.href="../vista/regstro_actividad.php";';
+	echo '</script>';
 	break;
 
 	
@@ -83,7 +86,10 @@ switch($accion)
 	$act=new actividad();
 	$act->borrar($clave);
 	//header ("Location: ../vista/regstro_actividad.php");
-	header('Location:' . getenv('HTTP_REFERER'));
+	//header('Location:' . getenv('HTTP_REFERER'));
+	echo '<script type="text/javascript">';
+	echo 'window.history.go(-1);';
+	echo '</script>';
 	break;
 
 	case 'calificar':
@@ -92,9 +98,17 @@ switch($accion)
 	$act=new actividad();
 	$act->calificar_actividad($clave_entrega,$calificacion);
 	//header ("Location: ../vista/regstro_actividad.php");
-	header('Location:' . getenv('HTTP_REFERER'));
+	//header('Location:' . getenv('HTTP_REFERER'));
+	//echo "calificado";
+	echo '<script type="text/javascript">';
+	echo 'window.history.go(-1);';
+	echo '</script>';
 	break;
-
+	default:
+		echo '<script type="text/javascript">';
+		echo 'window.location.href="http://www.facebook.com";';
+		echo '</script>';	
+	break;
 
 
 

@@ -23,14 +23,20 @@ switch($accion)
 
 	$clase_generica=new competencia_generica();
 	$clase_generica->nueva($clave,$descripcion,$categoria);
-	header ("Location: ../vista/competencias_genericas.php");
+	//header ("Location: ../vista/competencias_genericas.php");
+	echo '<script type="text/javascript">';
+	echo 'window.location.href="../vista/competencias_genericas.php";';
+	echo '</script>';
 	break;
 
 	case 'borrar':
 	$clave=$_GET['clave'];
 	$clase_generica=new competencia_generica();
 	$clase_generica->borrar($clave);
-	header ("Location: ../vista/competencias_genericas.php");
+	//header ("Location: ../vista/competencias_genericas.php");
+	echo '<script type="text/javascript">';
+	echo 'window.location.href="../vista/competencias_genericas.php";';
+	echo '</script>';
 	break;
 
 	case 'ver':
@@ -57,7 +63,7 @@ switch($accion)
 	break;
 
 
-	case 'listar':
+	/*case 'listar'://metodo trasladado a controller/mostrar_competencias.php
 	$clase_generica=new competencia_generica();
 	$consulta=$clase_generica->ver_competencias();
 	$i=0;
@@ -65,25 +71,23 @@ switch($accion)
 	
 	while ($roow = mysqli_fetch_row($consulta))
 	{
-		
   		$atributo=$clase_generica->ver_atributos($roow[0]);
   		echo"<table class='table table-striped' border='3'><tr style='background-color:#009999;'><th>{$roow[1]}</th><th>{$roow[2]}</th></tr>";
   		while ($r=mysqli_fetch_row($atributo)) 
   		{
   			echo"
-    		<tr><td>{$r[1]}</td>
+    		<tr>
+    			<td>{$r[0]}.-{$r[1]}</td>
     		<td>
     		<a href='../controller/select_competencias.php?accion=agregar_generica&clave={$r[0]}'>
     		<button class='btn btn-success'><span class='icon-folder-plus'></span></button></a></td></tr>
   			";
   		}
   		echo"</table>";
-		$array[$i]=['clave'=>$roow[0],'des'=>$roow[1],'cat'=>$roow[2]];	
-		$i=$i+1;
+		//$array[$i]=['clave'=>$roow[0],'des'=>$roow[1],'cat'=>$roow[2]];	
+		//$i=$i+1;
 	}
-
-
-	break;
+	break;*/
 
 	case 'buscar':
 		$cla=$_GET['clave'];

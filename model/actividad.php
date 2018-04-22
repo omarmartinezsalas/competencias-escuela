@@ -23,7 +23,7 @@ class actividad
 	{
 		require '../model/conexion.php';
 
-		$query=mysqli_query($conn,"insert into colegio.actividades (descripcion,clave_curso,fecha_entrega,parcial) values ('".$a."','".$b."','".$c."','".$d."');");
+		$query=mysqli_query($conn,"insert into actividades (descripcion,clave_curso,fecha_entrega,parcial) values ('".$a."','".$b."','".$c."','".$d."');");
 		
 		$id_actividad=mysqli_query($conn,"select max(id) from actividades;");
 		while($row=mysqli_fetch_row($id_actividad))
@@ -45,7 +45,7 @@ class actividad
 	{
 		require '../model/conexion.php';
 		$date=date();
-		mysqli_query($conn,"insert into colegio.actividades (descripcion,clave_curso,fecha_entrega,parcial) values ('".$tipo."','".$c."','".$date."','".$parcial."');");
+		mysqli_query($conn,"insert into actividades (descripcion,clave_curso,fecha_entrega,parcial) values ('".$tipo."','".$c."','".$date."','".$parcial."');");
 
 		$id_actividad=mysqli_query($conn,"select max(id) from actividades;");
 		while($row=mysqli_fetch_row($id_actividad))

@@ -51,16 +51,16 @@ function cursos($pro)
 			 {
 			 		$mate=$r[0];
 			 }
-			echo"<h6>  {$roww[0]}</h6><br> ";
+			//echo"<h6>  {$roww[0]}</h6><br> ";//clave_curso
 			echo"<h4 class='card-title'>{$mate}</h4> ";
 			echo" <p class='card-text'> Grupo: {$roww[2]}</h1> </p>";
-			echo" <a href='../controller/sesion.php?curso={$roww[0]}&accion=actividades_curso'><button class='btn btn-success'>administrar</button></a>";
+			echo" <a href='../controller/sesion.php?curso={$roww[0]}&accion=actividades_curso&materia={$mate}&grupo={$roww[2]}'><button class='btn btn-success'>Ver actividades</button></a>";
 
 			//echo" <a href='../controller/controller_curso.php?clave={$roww[0]}&accion=borrar'><button class='btn btn-danger'><span class='icon-bin '></span></button></a><br>";
 
-			echo" <a href='../controller/sesion.php?curso={$roww[0]}&accion=selecciona_curso&p=1'><button class='btn btn-secondary'>1</button></a>";
-			echo" <a href='../controller/sesion.php?curso={$roww[0]}&accion=selecciona_curso&p=2'><button class='btn btn-secondary'>2</button></a>";
-			echo" <a href='../controller/sesion.php?curso={$roww[0]}&accion=selecciona_curso&p=3'><button class='btn btn-secondary'>3</button></a>";
+			echo" <a href='../controller/sesion.php?curso={$roww[0]}&accion=selecciona_curso&p=1&materia={$mate}&grupo={$roww[2]}'><button class='btn btn-secondary'>Parcial 1</button></a>";
+			echo" <a href='../controller/sesion.php?curso={$roww[0]}&accion=selecciona_curso&p=2&materia={$mate}&grupo={$roww[2]}'><button class='btn btn-secondary'>Parcial 2</button></a>";
+			echo" <a href='../controller/sesion.php?curso={$roww[0]}&accion=selecciona_curso&p=3&materia={$mate}&grupo={$roww[2]}'><button class='btn btn-secondary'>Parcial 3</button></a>";
 
 			
 			echo"</div></div> </center><br>";	
@@ -74,7 +74,7 @@ function cursos($pro)
 		 		<div class='card-body'>
 			 		<h4 class='card-title'>No hay cursos</h4> 
 			 		<p class='card-text'>Click para registrar nuevo</h1> </p>
-			 		 <a href='Registro_curso.php'><button class='btn btn-info'>Nuevo curso</button></a>
+			 		 <a href='registro_curso.php'><button class='btn btn-info'>Nuevo curso</button></a>
 			 		 <br>
 		 		 </div>
 	 		 </div>
@@ -414,7 +414,7 @@ function manager_curso_simple($clave,$parcial)
 		
 			//matrucula y nombre de alumnos
 			echo"<tr>
-			<td><a href='actividades_alumno.php?matricula={$roww[0]}&n={$roww[2]}&ap={$roww[3]}&am={$roww[4]}' style='color:black;'>{$roww[0]}</a></td>
+			<td>{$roww[0]}</td>
 			<td>{$roww[2]} {$roww[3]} {$roww[4]}</td>";
 			$matricula=$roww[0];
 			$act=$recurso->actividades_simple($clave,$roww[0],$parcial);//calificacion de actividades
@@ -431,21 +431,28 @@ function manager_curso_simple($clave,$parcial)
 				{
 					echo"<td>
 					<form id='{$row[1]}' method='POST' name='calificacion_act' action='../controller/controller_actividad.php?accion=calificar&entrega={$row[1]}' > 
-					<input name='calificacion' type='number' min='0' max='10' step='0.1'  placeholder='{$row[0]}' value='{$row[0]}'></input>
+					<input name='calificacion' title='Presiona enter para guardar' type='number' min='0' max='10' step='0.1'  placeholder='{$row[0]}' value='{$row[0]}'></input>
 					</form>
 				
 					</td>";
 				}
 				
 			}
-			if($div>0)
+			if($div>0)//evaluacion continua
 			{
 				$total=round($suma/$div,2);
 				$red=$suma/$div;
 				echo "<td>
 				{$total}
+
+
+				<a href='actividades_alumno.php?matricula={$roww[0]}&n={$roww[2]}&ap={$roww[3]}&am={$roww[4]}'>
+					<button class='btn btn-success'>
+						<span class='icon-list2'></span>
+					</button>
+				</a>
 				</td>";		
-	
+					
 			}else
 			{
 				echo "<td>
@@ -470,6 +477,12 @@ function manager_curso_simple($clave,$parcial)
 				echo"<td>
 				{$prom}
 				";
+
+				//mas de nueve--excelente
+				//de 8 a 8.9----muy bien
+				//de 7 a 7.9----Bien
+				//de 6 a 6.9----regular
+				//menor de 6----insuficiente
 				if($prom>=9)
 				{
 					echo"excelente<span class='icon-cool2' style='color:#2EFE2E;'></span>";

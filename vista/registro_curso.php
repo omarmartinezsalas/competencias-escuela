@@ -4,8 +4,10 @@ include "../controller/controller_recursos.php";
 ?>
 
 <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12 contenido">
+	<h1>Registro curso</h1>
+		<a href="manual.html#registrar_curso" align="right" target="_blank"><button class="btn btn-warning"><span class="icon-question"></span></button></a>
 	<form name="registro_grupo" method="post" action="../controller/controller_curso.php?accion=agregar">
-		<h1>Registro curso</h1>
+		
 		<label>Materia</label><br>
 		<?php materias();?><br>
 		<label>Grupo</label><br>
@@ -19,7 +21,7 @@ include "../controller/controller_recursos.php";
 	</form>
 
 	<div class="alert alert-success" role="alert" id="mensaje">
-  		
+  		Espere... No cierre ni recarge la pagina
 	</div>
 
 </div>
