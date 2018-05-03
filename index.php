@@ -19,7 +19,7 @@
 <div class="content fluid"> 
 <div class="row ">
 	<div class="col-md-3 fondo-azul" style="min-height: 100%;">
-		<h2 class="encabezado">Sistema de evaluacion por competencias nivel medio superor </h2>
+		<h2 class="encabezado">Sistema de evaluacion por competencias nivel medio superior </h2>
 		<hr>
 		
 		<center><img src="resource/imageni/cecy.jpg"  class="img-fluid redondo" width="50%" height="50px" align="center"></img></center><br>

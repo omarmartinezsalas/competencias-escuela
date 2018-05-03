@@ -59,7 +59,7 @@ if (!isset($_SESSION['clave']))
 	<div class="row" style="background-color:#0B0B61; color:#57BC90; padding-top: 5px; padding-bottom: 3px;">
 		
 		<div class="col-md-3 col-sm-3 col-xs-3  hidden-sm-down">				
-		<h6 class="encabezado ">Sistema de evaluacion por competencias nivel medio superor </h6>		
+		<h6 class="encabezado ">Sistema de evaluacion por competencias nivel medio superior </h6>		
 		</div>
 		
 		<div class="col-md-3 col-sm-3 col-xs-3 hidden-sm-down">
