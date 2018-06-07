@@ -28,13 +28,13 @@ include "../controller/controller_recursos.php";
 		<table border="0">
 			<tr>
 				<td>
-					<a href="evaluacion_com.php?competencias=genericas" target="_blank"><button class="btn btn-warning">Evaluacion genericas</button></a>
+					<a href="evaluacion_pdf1.php?competencias=genericas" target="_blank"><button class="btn btn-warning">Evaluacion genericas pdf</button></a>
 				</td>
 				<td>
-					<a href="evaluacion_com.php?competencias=diciplinares" target="_blank"><button class="btn btn-warning">Evaluacion disciplinares</button></a>		
+					<a href="evaluacion_pdf1.php?competencias=disciplinares" target="_blank"><button class="btn btn-warning">Evaluacion disciplinares pdf</button></a>		
 				</td>
 				<td>
-					<a href="evaluacion_com.php?competencias=profesionales" target="_blank"><button class="btn btn-warning">Evaluacion profesionales</button></a>		
+					<a href="evaluacion_pdf1.php?competencias=profesionales" target="_blank"><button class="btn btn-warning">Evaluacion profesionales pdf</button></a>		
 				</td>
 			</tr>
 
